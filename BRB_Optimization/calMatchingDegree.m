@@ -7,6 +7,7 @@ function matchingDegree=calMatchingDegree(transformedRefVal,attrWeight)
         else
             xb3=combvec(xb3,transformedRefVal(:,:,i));
         end
+        
     end
     xb3=xb3';
     matchingDegree = prod(xb3,2);

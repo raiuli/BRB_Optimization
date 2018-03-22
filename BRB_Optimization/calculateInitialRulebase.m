@@ -29,8 +29,8 @@ for i=2:n
     t=t/(n);
     tmp(k)=t;
     j=j+1;
-    i=i-1
-    k=k-1
+    i=i-1;
+    k=k-1;
 end 
 
 for i=1:size(antRefval,1)
@@ -42,30 +42,30 @@ for i=1:size(antRefval,1)
     end
     xb3=xb3';
 %
-k=size(xb3,2)
+k=size(xb3,2);
 for j=1:size(xb3,2)
-    txb3(:,j)=xb3(:,k)
-    k=k-1
+    txb3(:,j)=xb3(:,k);
+    k=k-1;
 end   
-xb3=txb3
-rule=zeros(length(xb3),size(conRefval,2))
+xb3=txb3;
+rule=zeros(length(xb3),size(conRefval,2));
 %rule=horzcat(xb3,rule)
 for i=1:size(rule,1)
     
-    t=sum(xb3(i, [1:size(antRefval,1)])'.*attweight)
+    t=sum(xb3(i, [1:size(antRefval,1)])'.*attweight);
     if isempty(find(tmp==t))
         for j=1:size(tmp,2)-1
             if tmp(j)> t && t>tmp(j+1) 
-                rule(i,j+1)=(tmp(j)-t)/(tmp(j)-tmp(j+1))
-                rule(i,j)=1-rule(i,j+1)
+                rule(i,j+1)=(tmp(j)-t)/(tmp(j)-tmp(j+1));
+                rule(i,j)=1-rule(i,j+1);
             end    
         end
     else
-       fprintf('empty not %2.2f\n',find(tmp==t))
-       rule(i,find(tmp==t))=1
+       %fprintf('empty not %2.2f\n',find(tmp==t))
+       rule(i,find(tmp==t))=1;
        
     end
 end
-display('wait')
-rule=horzcat(xb3,rule)
+%display('wait')
+rule=horzcat(xb3,rule);
 end
